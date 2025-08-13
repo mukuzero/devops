@@ -21,9 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-              #owner/repo@version
+              #owner/repo@version https://github.com/marketplace?type=actions
         uses: actions/checkout@v2
       - name: Set up Python
+              #owner/repo@version https://github.com/marketplace?type=actions
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
@@ -33,3 +34,10 @@ jobs:
           pip install pandas
       - name: Run pandas script
         run: python app.py
+
+      - name: publish file to Github #owner/repo
+        uses: mikeal/publish-to-github@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: 'master' # default branch
+
