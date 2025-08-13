@@ -36,7 +36,8 @@ jobs:
         run: python app.py
 
       - name: publish file to Github #owner/repo
-        uses: mikeal/publish-to-github@master
+        uses: mikeal/publish-to-github-action@master
+              
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: 'master' # default branch
