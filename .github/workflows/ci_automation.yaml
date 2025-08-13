@@ -1,0 +1,35 @@
+name: CI Automation
+
+#When to do
+on:
+  # Event based triggers
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  # Time based triggers
+  schedule:
+    - cron: '0 0 * * *'
+
+# what to do
+jobs:
+  run_pandas_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+              #owner/repo@version
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+      - name: Run pandas script
+        run: python app.py
